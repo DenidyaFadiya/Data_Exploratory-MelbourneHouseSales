@@ -3,7 +3,7 @@
 In this Project I will be cleaning the raw data, using Substring, Parsename, Update, Upper, Lower, etc. to make the data cleaner and easier to analyze and visualize.
 
 ## Full Query for Data Cleaning Project
-**Check the Full Query for Data Cleaning Project [here](https://github.com/DenidyaFadiya/MelbourneHouseSales/blob/main/Full%20Query%20-%20Data%20Cleaning%20Melbourne%20House%20Sales).**
+**Check the Full Query for Data Cleaning Project [here](https://github.com/DenidyaFadiya/Data_Exploratory-MelbourneHouseSales/blob/main/Full%20Query%20-%20Data%20Exploratory%20Melbourne%20House%20Sales).**
 
 In this Data Cleaning project I will be cleaning data that I took from [Kaggle Data Source](https://www.kaggle.com/datasets/dansbecker/melbourne-housing-snapshot).
 
