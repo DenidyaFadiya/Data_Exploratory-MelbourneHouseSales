@@ -1,0 +1,287 @@
+
+---Exploratory Data
+
+
+--Select Data that we are going to be using
+
+select *
+from dbo.SalesData
+where BuildingArea is not null
+order by House_Id
+
+
+--replace the alphabet with the right data
+--i am not doing it since i want to use join
+
+select House_Id, typeId,
+case
+	when typeId = 'h' then 'House'
+	when typeId = 't' then 'Townhouse'
+	else 'Apartment'
+end as TypeFixed
+from dbo.SalesData
+order by House_Id
+
+
+--updating the alphabet with the right data
+--i am not doing it since i want to use join
+
+update dbo.SalesData
+set typeId = case typeId
+	when 'h' then 'House'
+	when 't' then 'Townhouse'
+	else 'Apartment'
+end
+from dbo.SalesData
+
+
+--Joining all table into one table and choose the columns that we want to select
+
+select sal.House_Id, 
+		Suburb, 
+		ty.Type,
+		Price, 
+		Distance, 
+		Date, 
+		Landsize, 
+		BuildingArea,
+		RegionName,
+		Seller
+from dbo.SalesData sal
+join dbo.Seller sel
+	on	sal.House_Id = sel.House_id
+join dbo.type ty
+	on ty.typeId = sal.TypeId
+where BuildingArea is not null
+and not Landsize = '0'
+order by House_Id
+
+
+---count how many houses are in melbourne
+
+select count(typeid) as TotalHousesInMelbourne
+from dbo.SalesData sal
+where BuildingArea is not null
+and not Landsize = '0'
+
+
+--spreading of houses type
+
+select ty.type,
+		count(type) as TotalHousesInMelbourne
+from dbo.SalesData sal
+join dbo.type ty
+	on ty.typeId = sal.TypeId
+where BuildingArea is not null
+and not Landsize = '0'
+group by type
+order by TotalHousesInMelbourne desc
+
+
+--Total of houses according to the region name (Southern Metropolitan is leading with the
+--most house sold)
+
+select Regionname,
+		count(RegionName) as TotalHouseSoldPerRegion
+from dbo.SalesData sal
+where BuildingArea is not null
+and not Landsize = '0'
+group by regionname
+order by TotalHouseSoldPerRegion desc
+
+
+--the spreading of the type of houses in Melbourne per Region Name
+
+select type,
+		Regionname,
+		count(type) as TotalHouseByType
+from dbo.SalesData sal
+join dbo.type ty
+	on ty.typeId = sal.TypeId
+where BuildingArea is not null
+and not Landsize = '0'
+group by type, regionname
+order by type, TotalHouseByType desc
+
+
+--average price of total house sold in Melbourne
+
+select RegionName,
+		avg(price) as AverageHousePricePerRegionName
+from dbo.SalesData
+where BuildingArea is not null
+and not Landsize = '0'
+group by regionname
+order by AverageHousePricePerRegionName desc
+
+
+----Southern Metropolitan has the most bought houses, which suburbs has the most houses sold
+
+select top 10 Suburb, 
+	count(type) as SoldPerSuburb
+from dbo.SalesData sal
+join dbo.type ty
+	on ty.typeId = sal.TypeId
+where regionname like '%southern%'
+and BuildingArea is not null
+and not Landsize = '0'
+group by Suburb
+order by SoldPerSuburb desc
+
+
+---Which Suburb in Southern Metropolitan Region has the most houses sold
+
+select suburb,
+		type,
+		count(type) as SoldInBentEast
+from dbo.SalesData sal
+join dbo.type ty
+	on ty.typeId = sal.TypeId
+where Suburb = 'Bentleigh  East'
+and BuildingArea is not null
+and not Landsize = '0'
+group by suburb, type 
+order by SoldInBentEast desc
+
+
+--- whose seller sold the most houses
+
+select Seller,
+		count(type) as TotalHouseSoldBySeller
+from dbo.SalesData sal
+join dbo.Seller sel
+	on	sal.House_Id = sel.House_id
+join dbo.type ty
+	on ty.typeId = sal.TypeId
+where BuildingArea is not null
+and not Landsize = '0'
+group by seller
+order by TotalHouseSoldBySeller desc
+
+
+--spreading of houses type sales based on the top 10 seller
+--nelson sold the most houses 
+
+select top 10 Seller,
+		count(type) as SellerHouseSold,
+		count(*) * 100.0 / sum(count(*)) over() as HouseSoldPercentage
+from dbo.SalesData sal
+join dbo.Seller sel
+	on	sal.House_Id = sel.House_id
+join dbo.type ty
+	on ty.typeId = sal.TypeId
+where BuildingArea is not null
+and not Landsize = '0'
+group by seller
+order by SellerHouseSold desc
+
+
+--most of the houses type sold is house compared to townhouse and apartment
+--nelson still the top 1 of top 10 seller, he sold 639 houses and the type is house  
+
+select top 10 Seller,
+		type,
+		count(type) as SellerHouseSold
+from dbo.SalesData sal
+join dbo.Seller sel
+	on	sal.House_Id = sel.House_id
+join dbo.type ty
+	on ty.typeId = sal.TypeId
+where BuildingArea is not null
+and not Landsize = '0'
+group by seller, type
+order by SellerHouseSold desc
+
+
+---if you want to know the amount of sales top 10 seller brought
+--even though Nelson Sold the most houses, Jellis is leading in revenue
+--percentage of revenue per seller compared to the total revenue per top 10 seller
+---as seen in percent
+
+select top 10 Seller,
+		sum(price) as TotalPricePerSeller,
+		sum(price) * 100.0 / sum(sum(price)) over() as RevenuePerSeller
+from dbo.SalesData sal
+join dbo.Seller sel
+	on	sal.House_Id = sel.House_id
+join dbo.type ty
+	on ty.typeId = sal.TypeId
+where BuildingArea is not null
+and not Landsize = '0'
+group by seller
+order by TotalPricePerSeller desc
+
+
+
+--Average distance from the downtown per Region
+
+select RegionName, 
+		avg(distance) as AverageDistance
+from dbo.SalesData sal
+where BuildingArea is not null
+and not Landsize = '0'
+group by regionname
+order by AverageDistance 
+
+
+--Average Landsize per region
+
+select RegionName, 
+		avg(Landsize) as AverageLandsize
+from dbo.SalesData sal
+where BuildingArea is not null
+and not Landsize = '0'
+group by regionname
+order by AverageLandsize desc
+
+
+--Average BuildingArea per region
+
+select RegionName, 
+		avg(BuildingArea) as AverageBuildingArea
+from dbo.SalesData sal
+where BuildingArea is not null
+and not Landsize = '0'
+group by regionname
+order by AverageBuildingArea desc
+
+
+
+
+--Property Sold per year
+
+select date,
+		year(date) as year
+from dbo.SalesData
+
+
+--updating the year table
+
+alter table dbo.SalesData
+add Year nvarchar(255)
+
+update dbo.SalesData
+set Year = year(date)
+
+--count of property by year
+
+select year,
+		count(year) as CountOfProperty
+from dbo.SalesData
+where BuildingArea is not null
+and not Landsize = '0'
+group by year
+
+
+--count of type houses by year
+
+select year,
+		type,
+		count(type) as CountOfHouses
+from dbo.SalesData Sal
+join dbo.Type Ty
+	on Sal.TypeId = Ty.TypeId
+where BuildingArea is not null
+and not Landsize = '0'
+group by year, type
+order by year, type, CountOfHouses desc
