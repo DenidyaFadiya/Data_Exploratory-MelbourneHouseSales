@@ -1,11 +1,11 @@
 # MelbourneHouseSales
-**Data Cleaning using SQL**
-In this Project I will be cleaning the raw data, using Substring, Parsename, Update, Upper, Lower, etc. to make the data cleaner and easier to analyze and visualize.
+**Data Exploratory using SQL**
+In this Project I will be exploring the data to see the analysis on house sales across the Melbourne by seeing which House Type, which Region, which Seller has the most house sold.
 
-## Full Query for Data Cleaning Project
-**Check the Full Query for Data Cleaning Project [here](https://github.com/DenidyaFadiya/Data_Exploratory-MelbourneHouseSales/blob/main/Full%20Query%20-%20Data%20Exploratory%20Melbourne%20House%20Sales).**
+## Full Query for Data Exploratory Project
+**Check the Full Query for Data Exploratory Project [here](https://github.com/DenidyaFadiya/Data_Exploratory-MelbourneHouseSales/blob/main/Full%20Query%20-%20Data%20Exploratory%20Melbourne%20House%20Sales).**
 
-In this Data Cleaning project I will be cleaning data that I took from [Kaggle Data Source](https://www.kaggle.com/datasets/dansbecker/melbourne-housing-snapshot).
+In this Data Exploratory project I will be cleaning data that I took from [Kaggle Data Source](https://www.kaggle.com/datasets/dansbecker/melbourne-housing-snapshot).
 
 ## Exploratory Data Project
 
