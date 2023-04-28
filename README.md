@@ -1,5 +1,7 @@
 # MelbourneHouseSales
 **Data Exploratory using SQL**
+
+
 In this Project I will be exploring the data to see the analysis on house sales across the Melbourne by seeing which House Type, which Region, which Seller has the most house sold.
 
 ## Full Query for Data Exploratory Project
