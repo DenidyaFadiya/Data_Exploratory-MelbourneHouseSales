@@ -7,6 +7,8 @@ In this Project I will be exploring the data to see the analysis on house sales 
 ## Full Query for Data Exploratory Project
 **Check the Full Query for Data Exploratory Project [here](https://github.com/DenidyaFadiya/Data_Exploratory-MelbourneHouseSales/blob/main/Full%20Query%20-%20Data%20Exploratory%20Melbourne%20House%20Sales).**
 
+**Tableau Interactive Dashboard [here](https://public.tableau.com/app/profile/denidya.fadiya/viz/turkeynewvisualization/Dashboard1).**
+
 In this Data Exploratory project I will be cleaning data that I took from [Kaggle Data Source](https://www.kaggle.com/datasets/dansbecker/melbourne-housing-snapshot).
 
 ## Exploratory Data Project
