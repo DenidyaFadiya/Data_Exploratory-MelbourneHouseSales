@@ -1,4 +1,4 @@
-# MelbourneHouseSales
+# Data Exploratory Project Melbourne House Sales
 **Data Exploratory using SQL**
 
 
