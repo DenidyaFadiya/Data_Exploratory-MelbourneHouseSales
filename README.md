@@ -19,18 +19,25 @@ This Exploratory data I am going to be using the data I have cleaned in the prev
 I have 3 tables which are ; SalesData, Seller and Type
 
 **SalesData**
-SalesData Table
+
+
+
 ![image](https://user-images.githubusercontent.com/129844542/235099687-0bfa9903-036c-4dc5-a592-614c64d34c27.png)
 
  
 
 **Seller**
-Seller Table
+
+
+
+
 ![image](https://user-images.githubusercontent.com/129844542/235099703-f4fc20fe-1279-4258-8cf0-09bb55e39177.png)
 
 
 **Type**
-Type Table
+
+
+
 ![image](https://user-images.githubusercontent.com/129844542/235099720-c13ccac9-a246-4ce3-8322-29048ac04dbb.png)
 
 
