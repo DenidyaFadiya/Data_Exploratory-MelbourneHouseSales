@@ -1,9 +1,5 @@
 # SQL Project - Data Exploratory Project Melbourne House Sales
 
-<p align="center">
-  <img width="550" height="400" src="https://user-images.githubusercontent.com/129844542/235351094-9f97e963-d961-42bd-8013-2c9212e3dc41.jpeg">
-</p>
-
 In this Project I will be exploring the data to see the analysis on house sales across the Melbourne by seeing which House Type, which Region, which Seller has the most house sold.
 
 ## Full Query for Data Exploratory Project
